@@ -12,6 +12,7 @@ export type IUser = {
   email: string;
   password: string;
   role: IUserRoles;
+  address?: string
 };
 
 export type UserModel = {

@@ -13,7 +13,8 @@ const userSchema = new Schema<IUser, UserModel>(
     password: { type: String, required: true, select: 0 },
     role: { type: String, enum: userRolesConstant, required: true },
     email: { type: String, required: true, unique: true },
-    phoneNumber: { type: String, required: true,unique: true },
+    phoneNumber: { type: String, required: true, unique: true },
+    address: { type: String },
   },
   {
     timestamps: true,
