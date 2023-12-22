@@ -3,7 +3,7 @@ import APIError from '../../../errors/ApiErrors';
 import { IUser, IUserLoginResponse } from '../user/user.interface';
 import { User } from '../user/user.model';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
-import { JwtPayload, Secret } from 'jsonwebtoken';
+import {  Secret } from 'jsonwebtoken';
 import config from '../../../config';
 
 const signupUser = async (payload: IUser): Promise<IUser> => {
