@@ -2,11 +2,11 @@ import catchAsync from '../../../shared/catchAsync';
 import { Request, Response } from 'express';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
-import { userServices } from './user.services';
+import { UserServices } from './user.services';
 
 const getAllUsersController = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await userServices.getAllUsers();
+    const result = await UserServices.getAllUsers();
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
@@ -20,7 +20,7 @@ const getSingleUserController = catchAsync(
   async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const result = await userServices.getSingleUser(id);
+    const result = await UserServices.getSingleUser(id);
 
     sendResponse(res, {
       success: true,
@@ -31,7 +31,7 @@ const getSingleUserController = catchAsync(
   },
 );
 
-export const userController = {
+export const UserController = {
   getAllUsersController,
   getSingleUserController,
 };

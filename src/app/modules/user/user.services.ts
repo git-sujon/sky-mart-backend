@@ -10,7 +10,7 @@ const getSingleUser = async (payload: string): Promise<IUser | null> => {
   return result;
 };
 
-export const userServices = {
+export const UserServices = {
   getAllUsers,
   getSingleUser,
 };

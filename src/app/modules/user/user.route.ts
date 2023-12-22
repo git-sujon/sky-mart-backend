@@ -1,5 +1,5 @@
 import express from 'express';
-import { userController } from './user.controller';
+import { UserController } from './user.controller';
 import auth from '../../middleware/auth';
 import { ENUM_USER_ROLES } from '../../../enum/userRoles';
 
@@ -8,13 +8,13 @@ const router = express.Router();
 router.get(
   '/:id',
   auth(ENUM_USER_ROLES.ADMIN),
-  userController.getSingleUserController,
+  UserController.getSingleUserController,
 );
 
 router.get(
   '/',
   auth(ENUM_USER_ROLES.ADMIN),
-  userController.getAllUsersController,
+  UserController.getAllUsersController,
 );
 
-export const userRoute = router;
+export const UserRoute = router;
