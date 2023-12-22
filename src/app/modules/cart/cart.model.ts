@@ -18,4 +18,4 @@ const cartSchema = new Schema<ICart>(
   { timestamps: true, toJSON: { virtuals: true } },
 );
 
-export const cart = model<ICart, cartModel>('Cart', cartSchema);
+export const Cart = model<ICart, cartModel>('Cart', cartSchema);

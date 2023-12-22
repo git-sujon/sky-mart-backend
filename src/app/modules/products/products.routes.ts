@@ -5,16 +5,8 @@ import { ProductsController } from './products.controller';
 
 const router = express.Router();
 
-router.get(
-  '/:id',
-  auth(ENUM_USER_ROLES.ADMIN),
-  ProductsController.getSingleProductController,
-);
+router.get('/:id', ProductsController.getSingleProductController);
 
-router.get(
-  '/',
-  auth(ENUM_USER_ROLES.ADMIN),
-  ProductsController.getAllProductsController,
-);
+router.get('/', ProductsController.getAllProductsController);
 
 export const ProductRoute = router;
