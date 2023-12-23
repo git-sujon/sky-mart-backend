@@ -30,6 +30,7 @@ const addToCart = async (
   }
 
   const checkExistingProduct = isCartExist.items.findIndex(
+    //@ts-expect-error
     item => item?.productId?.equals(productId),
   );
 
