@@ -3,6 +3,8 @@ import mongoose, { Model } from 'mongoose';
 export interface ICartItem {
   productId: mongoose.Schema.Types.ObjectId;
   quantity: number;
+  color?: string;
+  size?: string;
 }
 
 export type ICart = {

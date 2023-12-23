@@ -9,4 +9,4 @@ const router = express.Router();
 router.post('/add-to-cart', CartController.addToCart)
 router.get('/get-my-cart', CartController.getMyCart)
 
-export const ProductRoute = router;
+export const CartRoute = router;

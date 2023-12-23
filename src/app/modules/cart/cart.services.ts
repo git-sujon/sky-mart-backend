@@ -3,13 +3,12 @@ import APIError from '../../../errors/ApiErrors';
 import { ICart, ICartItem } from './cart.interface';
 import { Cart } from './cart.model';
 import { checkUserInfo } from '../../../utils/checkUserInfo';
-import mongoose from 'mongoose';
 
 const addToCart = async (
   token: string | undefined,
   payload: ICartItem,
 ): Promise<ICart> => {
-  const { productId, quantity } = payload;
+  const { productId, quantity, color, size } = payload;
 
   const userInfo = checkUserInfo(token!);
 
@@ -30,14 +29,17 @@ const addToCart = async (
   }
 
   const checkExistingProduct = isCartExist.items.findIndex(
+    item =>
     //@ts-expect-error
-    item => item?.productId?.equals(productId),
+      item?.productId?.equals(productId) &&
+      item?.color === color &&
+      item?.size === size,
   );
 
   if (checkExistingProduct !== -1) {
     isCartExist.items[checkExistingProduct].quantity += quantity;
   } else {
-    const newItem: ICartItem = { productId, quantity };
+    const newItem: ICartItem = { productId, quantity, color, size };
     isCartExist.items.push(newItem);
   }
 

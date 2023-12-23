@@ -5,7 +5,6 @@ import config from '../../config';
 import APIError from '../../errors/ApiErrors';
 import { jwtHelpers } from '../../helpers/jwtHelpers';
 
-
 const auth =
   (...requiredRoles: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
@@ -18,8 +17,12 @@ const auth =
       // verify token
       let verifiedUser = null;
 
-      verifiedUser = jwtHelpers.verifiedToken(token, config.jwt.access_secret as Secret);
+      verifiedUser = jwtHelpers.verifiedToken(
+        token,
+        config.jwt.access_secret as Secret,
+      );
 
+      //@ts-expect-error
       req.user = verifiedUser;
 
       if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role)) {
