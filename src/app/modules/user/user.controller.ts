@@ -31,7 +31,23 @@ const getSingleUserController = catchAsync(
   },
 );
 
+const getMyProfile = catchAsync(
+  async (req: Request, res: Response) => {
+    const authToken = req.headers.authorization
+
+    const result = await UserServices.getMyProfile(authToken)
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "Profile Data retried successfully",
+      data: result,
+    })
+  }
+)
+
+
 export const UserController = {
   getAllUsersController,
   getSingleUserController,
+  getMyProfile
 };

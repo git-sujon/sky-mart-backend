@@ -1,3 +1,4 @@
+import { checkUserInfo } from '../../../utils/checkUserInfo';
 import { IUser } from './user.interface';
 import { User } from './user.model';
 
@@ -10,7 +11,16 @@ const getSingleUser = async (payload: string): Promise<IUser | null> => {
   return result;
 };
 
+const getMyProfile = async (
+  token: string | undefined,
+): Promise<IUser | null> => {
+  const result = checkUserInfo(token!);
+
+  return result;
+};
+
 export const UserServices = {
   getAllUsers,
   getSingleUser,
+  getMyProfile,
 };

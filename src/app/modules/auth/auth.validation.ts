@@ -34,7 +34,7 @@ const signupValidationSchema = z.object({
 const createLoginValidationSchema = z.object({
   body: z.object({
     email: z.string({
-      required_error: 'phoneNumber is Required',
+      required_error: 'email is Required',
     }),
     password: z.string({
       required_error: 'password is Required',

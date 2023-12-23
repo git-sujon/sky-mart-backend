@@ -14,17 +14,17 @@ const signupUser = async (payload: IUser): Promise<IUser> => {
 const loginUser = async (payload: IUser): Promise<IUserLoginResponse> => {
   const { email, password } = payload;
 
-  const isAdminExist = await User.isUserExist(email);
+  const isUserExist = await User.isUserExist(email);
 
-  if (!isAdminExist) {
+  if (!isUserExist) {
     throw new APIError(httpStatus.NOT_FOUND, "User doesn't Exist");
   }
 
-  if (!(await User.isPasswordMatch(password, isAdminExist.password))) {
+  if (!(await User.isPasswordMatch(password, isUserExist.password))) {
     throw new APIError(httpStatus.UNAUTHORIZED, 'Incorrect password');
   }
 
-  const { _id, role } = isAdminExist;
+  const { _id, role } = isUserExist;
 
   const accessToken = jwtHelpers.createToken(
     { _id, role, email },

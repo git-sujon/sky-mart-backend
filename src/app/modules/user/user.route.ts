@@ -16,5 +16,9 @@ router.get(
   auth(ENUM_USER_ROLES.ADMIN),
   UserController.getAllUsersController,
 );
-
+router.get(
+  '/my-profile',
+  auth(ENUM_USER_ROLES.ADMIN, ENUM_USER_ROLES.CUSTOMER),
+  UserController.getMyProfile,
+);
 export const UserRoute = router;
