@@ -7,6 +7,14 @@ import {  Secret } from 'jsonwebtoken';
 import config from '../../../config';
 
 const signupUser = async (payload: IUser): Promise<IUser> => {
+
+  const isUserExist = await User.isUserExist(payload?.email);
+
+  if (isUserExist) {
+    throw new APIError(httpStatus.NOT_FOUND, "Use different email, Email already exist!");
+  }
+
+
   const result = await User.create(payload);
   return result;
 };

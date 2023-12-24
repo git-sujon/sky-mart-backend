@@ -4,11 +4,27 @@ import cors from 'cors'
 import routers from './app/routes'
 import httpStatus from 'http-status'
 import globalErrorHandler from './app/middleware/globalErrorHandler'
-
+import cookieParser from 'cookie-parser';
 const app = express()
 
-app.use(cors())
+const allowedOrigins = ['http://localhost:3000', 'vercelUrl']; // Update this with your frontend's URL(s)
 
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Check if the origin is in the allowed list or is undefined (for same-origin requests)
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Allow credentials (cookies)
+  }),
+);
+
+
+app.use(cookieParser());
 //  parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

@@ -12,6 +12,7 @@ const cartSchema = new Schema<ICart>(
       {
         productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
         quantity: { type: Number, default: 1 },
+        title: { type: String },
         color: { type: String },
         size: { type: String },
       },

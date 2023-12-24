@@ -8,7 +8,7 @@ const addToCart = async (
   token: string | undefined,
   payload: ICartItem,
 ): Promise<ICart> => {
-  const { productId, quantity, color, size } = payload;
+  const { productId, quantity, color, size, title } = payload;
 
   const userInfo = checkUserInfo(token!);
 
@@ -39,7 +39,7 @@ const addToCart = async (
   if (checkExistingProduct !== -1) {
     isCartExist.items[checkExistingProduct].quantity += quantity;
   } else {
-    const newItem: ICartItem = { productId, quantity, color, size };
+    const newItem: ICartItem = { productId, quantity, color, size, title };
     isCartExist.items.push(newItem);
   }
 
